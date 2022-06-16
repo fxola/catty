@@ -1,17 +1,17 @@
 import { createTheme } from "@shopify/restyle";
 
-const palette = {
-  darkGray: "#333",
-  lightGray: "#EEE",
+export const palette = {
+  gray: "#212227",
   black: "#0B0B0B",
   white: "#F0F2F3",
-  red: "red",
+  red: "#DE0202",
 };
 
 const theme = createTheme({
   colors: {
     primaryBackground: palette.white,
     primaryText: palette.black,
+    primaryGrey: palette.gray,
   },
   spacing: {
     s: 8,
@@ -38,8 +38,8 @@ const theme = createTheme({
     primary: palette.black,
     background: palette.white,
     card: palette.white,
-    text: palette.darkGray,
-    border: palette.darkGray,
+    text: palette.gray,
+    border: palette.gray,
     notification: palette.red,
   },
 });
@@ -56,7 +56,7 @@ export const darkTheme: Theme = {
     background: palette.black,
     card: palette.black,
     text: palette.white,
-    border: palette.darkGray,
+    border: palette.gray,
     notification: palette.red,
   },
 };

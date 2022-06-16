@@ -1,6 +1,8 @@
 import Text from "@src/constants/text";
 import View from "@src/constants/view";
 
+import LikeButton from "@src/components/LikeButton";
+
 const AllCats = () => {
   return (
     <View
@@ -12,6 +14,7 @@ const AllCats = () => {
       <Text marginBottom="l" color="primaryText">
         AllCats!
       </Text>
+      <LikeButton isLiked />
     </View>
   );
 };
