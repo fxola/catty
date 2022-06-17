@@ -34,7 +34,7 @@ export const LikeButton = ({ isLiked, size = 25 }: Props) => {
     setLiked(!liked);
     if (!liked) {
       heartScale.value = withSequence(
-        withSpring(1.1, { velocity: 20, damping: 10 }),
+        withSpring(1.05, { velocity: 3, damping: 3 }),
         withSpring(1)
       );
     }

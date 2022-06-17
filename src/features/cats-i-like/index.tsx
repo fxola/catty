@@ -1,23 +1,23 @@
+import CatsILikeItem from "@src/components/CatsIlikeItem";
 import Header from "@src/components/Header";
-import Text from "@src/constants/text";
 import View from "@src/constants/view";
-import { StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const CatsILike = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="Cats I Like" />
-      <View
-        justifyContent="center"
-        alignItems="center"
-        flex={1}
-        backgroundColor="primaryBackground"
-      >
-        <Text color="primaryText" variant="regular">
-          Cats i like!
-        </Text>
-      </View>
+      <ScrollView>
+        <View flexDirection={"row"} justifyContent={"space-between"}>
+          <CatsILikeItem text="Abysinnan" imageUrl="" isLiked />
+          <CatsILikeItem text="American Bobtail" imageUrl="" isLiked={false} />
+        </View>
+        <View flexDirection={"row"} justifyContent={"space-between"}>
+          <CatsILikeItem text="Abysinnan" imageUrl="" isLiked />
+          <CatsILikeItem text="American Bobtail" imageUrl="" isLiked={false} />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };

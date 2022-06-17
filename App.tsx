@@ -11,6 +11,8 @@ export default function App() {
   const colorScheme = useColorScheme();
   const isDarkMode = colorScheme === "dark";
   const [darkMode, setDarkMode] = useState(isDarkMode);
+  const statusBarStyle = darkMode ? "light" : "dark";
+
   const resourcesLoaded = useCachedResources();
   if (!resourcesLoaded) {
     return null;
@@ -21,7 +23,7 @@ export default function App() {
       <ThemeProvider theme={darkMode ? darkTheme : theme}>
         <Navigation isDarkMode={darkMode} />
       </ThemeProvider>
-      <StatusBar backgroundColor="rgba(0,0,0,0.5)" translucent={true} />
+      <StatusBar style={statusBarStyle} translucent />
     </SafeAreaProvider>
   );
 }
