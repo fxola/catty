@@ -1,8 +1,7 @@
 import * as React from "react";
 import { Insets, Pressable } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { useTheme } from "@shopify/restyle";
-import { palette, Theme } from "@src/constants/theme";
+import { palette } from "@src/constants/theme";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -15,22 +14,13 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 interface Props {
   isLiked: boolean;
   size?: number;
-  fillColor?: string;
-  disableAnimation?: boolean;
 }
 
-export const LikeButton = ({
-  isLiked,
-  size = 25,
-  fillColor = palette.red,
-  disableAnimation = false,
-}: Props) => {
-  const theme = useTheme<Theme>();
-  const { primaryGrey } = theme.colors;
+export const LikeButton = ({ isLiked, size = 25 }: Props) => {
   const [liked, setLiked] = React.useState(isLiked);
 
   const name = liked ? "heart" : "heart-outline";
-  const color = liked ? fillColor : primaryGrey;
+  const color = liked ? palette.red : palette.gray;
 
   const heartScale = useSharedValue(1);
 
@@ -42,7 +32,7 @@ export const LikeButton = ({
 
   const onPress = () => {
     setLiked(!liked);
-    if (!liked && !disableAnimation) {
+    if (!liked) {
       heartScale.value = withSequence(
         withSpring(1.1, { velocity: 20, damping: 10 }),
         withSpring(1)

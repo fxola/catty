@@ -1,10 +1,12 @@
 import { createTheme } from "@shopify/restyle";
 
 export const palette = {
-  gray: "#212227",
-  black: "#0B0B0B",
-  white: "#F0F2F3",
+  gray: "#ccc",
+  black: "#212227",
+  white: "#fff",
   red: "#DE0202",
+  darkGray: "#aaa",
+  pitchBlack: "#000",
 };
 
 const theme = createTheme({
@@ -12,6 +14,10 @@ const theme = createTheme({
     primaryBackground: palette.white,
     primaryText: palette.black,
     primaryGrey: palette.gray,
+  },
+  tabTintColor: {
+    inactive: palette.gray,
+    active: palette.black,
   },
   spacing: {
     s: 8,
@@ -28,10 +34,19 @@ const theme = createTheme({
       color: "primaryText",
     },
     bold: {
-      fontWeight: "bold",
+      fontWeight: "600",
+      fontFamily: "SFPro Display",
+      fontSize: 16,
     },
     regular: {
-      fontWeight: "bold",
+      fontWeight: "400",
+      fontFamily: "SFPro Display",
+      fontSize: 16,
+    },
+    caption: {
+      fontSize: 13,
+      fontWeight: "400",
+      fontFamily: "SFPro Display",
     },
   },
   navigationContainer: {
@@ -48,16 +63,20 @@ export const darkTheme: Theme = {
   ...theme,
   colors: {
     ...theme.colors,
-    primaryBackground: palette.black,
+    primaryBackground: palette.pitchBlack,
     primaryText: palette.white,
   },
   navigationContainer: {
     primary: palette.white,
-    background: palette.black,
-    card: palette.black,
+    background: palette.pitchBlack,
+    card: palette.pitchBlack,
     text: palette.white,
-    border: palette.gray,
+    border: palette.black,
     notification: palette.red,
+  },
+  tabTintColor: {
+    inactive: palette.darkGray,
+    active: palette.white,
   },
 };
 
