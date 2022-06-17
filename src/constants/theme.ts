@@ -37,11 +37,13 @@ const theme = createTheme({
       fontWeight: "600",
       fontFamily: "SFPro Display",
       fontSize: 16,
+      lineHeight: 24,
     },
     regular: {
       fontWeight: "400",
       fontFamily: "SFPro Display",
       fontSize: 16,
+      lineHeight: 24,
     },
     caption: {
       fontSize: 13,
