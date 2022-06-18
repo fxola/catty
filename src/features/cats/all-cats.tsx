@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import View from "@src/constants/view";
+import View from "@src/components/base/view";
 
-import Header from "@src/components/Header";
-import AllCatsItem from "@src/components/AllCatsItem";
+import Header from "@src/components/header";
+import AllCatsItem from "@src/components/all-cats-Item";
 
 const AllCats = () => {
   return (

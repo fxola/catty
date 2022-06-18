@@ -1,7 +1,7 @@
-import Text from "@src/constants/text";
-import View from "@src/constants/view";
+import Text from "@src/components/base/text";
+import View from "@src/components/base/view";
 import { Image, StyleSheet } from "react-native";
-import LikeButton from "./LikeButton";
+import LikeButton from "./like-button";
 
 const defaultImage = require("../../assets/images/favicon.png");
 interface Props {

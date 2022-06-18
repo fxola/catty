@@ -1,5 +1,5 @@
-import Text from "@src/constants/text";
-import View from "@src/constants/view";
+import Text from "@src/components/base/text";
+import View from "@src/components/base/view";
 import { Insets, Platform, TouchableOpacity } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Ionicons from "@expo/vector-icons/Ionicons";
