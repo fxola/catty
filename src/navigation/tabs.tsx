@@ -26,6 +26,7 @@ function Tabs() {
       paddingVertical: Platform.select({ android: 20 }),
     },
     tabBarStyle: { height: 90 },
+    tabBarLabelPosition: "below-icon",
   };
 
   return (

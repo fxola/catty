@@ -7,6 +7,7 @@ import Animated, {
   useAnimatedStyle,
   withSpring,
   withSequence,
+  withTiming,
 } from "react-native-reanimated";
 
 const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
@@ -23,21 +24,31 @@ export const LikeButton = ({ isLiked, size = 25 }: Props) => {
   const color = liked ? palette.red : palette.gray;
 
   const heartScale = useSharedValue(1);
+  const heartRotate = useSharedValue(0);
 
   const style = useAnimatedStyle(() => {
     return {
-      transform: [{ scale: heartScale.value }],
+      transform: [
+        { scale: heartScale.value },
+        { rotate: `${heartRotate.value} deg` },
+      ],
     };
   });
 
   const onPress = () => {
     setLiked(!liked);
     if (!liked) {
-      heartScale.value = withSequence(
+      return (heartScale.value = withSequence(
         withSpring(1.05, { velocity: 3, damping: 3 }),
         withSpring(1)
-      );
+      ));
     }
+
+    heartRotate.value = withSequence(
+      withTiming(25, { duration: 100 }),
+      withTiming(-25, { duration: 100 }),
+      withTiming(0, { duration: 100 })
+    );
   };
 
   const hitSlop: Insets = {
