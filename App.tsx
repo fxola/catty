@@ -6,6 +6,8 @@ import theme, { darkTheme } from "@src/constants/theme";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import useCachedResources from "@src/hooks/useCachedResources";
+import { Provider } from "react-redux";
+import { store } from "@src/store";
 
 export default function App() {
   const colorScheme = useColorScheme();
@@ -20,9 +22,11 @@ export default function App() {
 
   return (
     <SafeAreaProvider>
-      <ThemeProvider theme={darkMode ? darkTheme : theme}>
-        <Navigation isDarkMode={darkMode} />
-      </ThemeProvider>
+      <Provider store={store}>
+        <ThemeProvider theme={darkMode ? darkTheme : theme}>
+          <Navigation isDarkMode={darkMode} />
+        </ThemeProvider>
+      </Provider>
       <StatusBar style={statusBarStyle} translucent />
     </SafeAreaProvider>
   );

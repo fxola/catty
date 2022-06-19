@@ -24,6 +24,9 @@
         "backgroundColor": "#FFFFFF"
       }
     },
+    "extra": {
+      "catsAPIKey": ""
+    },
     "web": {
       "favicon": "./assets/images/favicon.png"
     }

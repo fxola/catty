@@ -10,8 +10,8 @@ import { Theme } from "@src/constants/theme";
 import Text from "@src/components/base/text";
 import CatSvg from "../../assets/svg/CatSvg";
 
-import AllCats from "@src/features/cats/all-cats";
-import CatsILike from "@src/features/cats/cats-i-like";
+import AllCats from "@src/features/all-cats";
+import CatsILike from "@src/features/cats-i-like";
 
 const Tab = createBottomTabNavigator();
 
