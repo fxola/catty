@@ -19,7 +19,7 @@ import {
   addToFavorites,
   getFavoriteIDs,
   removeFromFavorites,
-} from "../cats-i-like/slice";
+} from "@src/features/cats-i-like/slice";
 import { normalize } from "@src/constants/layout";
 
 const AllCats = () => {

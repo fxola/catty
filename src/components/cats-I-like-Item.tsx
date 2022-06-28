@@ -16,7 +16,7 @@ const CatsILikeItem = ({ text, imageUrl, isLiked, onLike }: Props) => {
     ? { uri: imageUrl }
     : defaultImage;
   return (
-    <View margin={"s"}>
+    <View marginHorizontal={"s"} marginVertical={"m"}>
       <Image source={source} style={styles.image} />
       <View flexDirection="row" justifyContent="space-between" mt="s">
         <Text variant="regular">{text}</Text>
