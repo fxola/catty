@@ -15,13 +15,12 @@ const AnimatedPressable = Animated.createAnimatedComponent(Pressable);
 interface Props {
   isLiked: boolean;
   size?: number;
+  onLike: () => void;
 }
 
-export const LikeButton = ({ isLiked, size = 25 }: Props) => {
-  const [liked, setLiked] = React.useState(isLiked);
-
-  const name = liked ? "heart" : "heart-outline";
-  const color = liked ? palette.red : palette.gray;
+export const LikeButton = ({ isLiked, size = 25, onLike }: Props) => {
+  const name = isLiked ? "heart" : "heart-outline";
+  const color = isLiked ? palette.red : palette.gray;
 
   const heartScale = useSharedValue(1);
   const heartRotate = useSharedValue(0);
@@ -36,8 +35,8 @@ export const LikeButton = ({ isLiked, size = 25 }: Props) => {
   });
 
   const onPress = () => {
-    setLiked(!liked);
-    if (!liked) {
+    onLike();
+    if (!isLiked) {
       return (heartScale.value = withSequence(
         withSpring(1.05, { velocity: 3, damping: 3 }),
         withSpring(1)

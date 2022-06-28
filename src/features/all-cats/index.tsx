@@ -1,27 +1,58 @@
-import { ActivityIndicator, FlatList, StyleSheet } from "react-native";
+import {
+  ActivityIndicator,
+  FlatList,
+  Platform,
+  StyleSheet,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import View from "@src/components/base/view";
 import Header from "@src/components/header";
 import AllCatsItem from "@src/components/all-cats-Item";
 import { useGetAllCatsQuery } from "./api";
-import { useCallback, useState } from "react";
-import { useAppSelector } from "@src/hooks/useReduxHooks";
+import { useCallback, useRef, useState } from "react";
+import { useAppDispatch, useAppSelector } from "@src/hooks/useReduxHooks";
 import { getInfiniteCatList } from "./slice";
 import { Cat } from "../types";
+import { useScrollToTop } from "@react-navigation/native";
+import {
+  addToFavorites,
+  getFavoriteIDs,
+  removeFromFavorites,
+} from "../cats-i-like/slice";
 
 const AllCats = () => {
   const [page, setPage] = useState(0);
   const { isLoading, isFetching } = useGetAllCatsQuery(page);
   const { data } = useAppSelector(getInfiniteCatList);
+  const favoriteIDs = useAppSelector(getFavoriteIDs);
+  const dispatch = useAppDispatch();
+
+  const ref = useRef<FlatList | null>(null);
+  useScrollToTop(ref);
 
   const renderItem = useCallback(
     ({ item }: { item: Cat }) => {
+      const { id, name, url } = item;
+      const isLiked = favoriteIDs.includes(item.id);
+
+      const onLike = () => {
+        if (isLiked) {
+          return dispatch(removeFromFavorites({ id }));
+        }
+        dispatch(addToFavorites({ id, name, url }));
+      };
+
       return (
-        <AllCatsItem text={item.name} imageUrl={item.url} isLiked={false} />
+        <AllCatsItem
+          text={item.name}
+          imageUrl={item.url}
+          isLiked={isLiked}
+          onLike={onLike}
+        />
       );
     },
-    [data]
+    [data, favoriteIDs]
   );
 
   const onEndreached = useCallback(() => {
@@ -46,6 +77,7 @@ const AllCats = () => {
         showsVerticalScrollIndicator={false}
         onEndReached={onEndreached}
         onEndReachedThreshold={0.7}
+        ref={ref}
       />
     );
   };
@@ -61,10 +93,13 @@ const AllCats = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, paddingBottom: 70 },
+  container: {
+    flexGrow: 1,
+    paddingBottom: Platform.select({ ios: 70, android: 100 }),
+  },
   listContainer: {
     flexGrow: 1,
-    paddingBottom: 70,
+    paddingBottom: Platform.select({ ios: 70, android: 100 }),
   },
 });
 

@@ -1,6 +1,7 @@
 import Text from "@src/components/base/text";
 import View from "@src/components/base/view";
-import { Image, StyleSheet } from "react-native";
+import { palette } from "@src/constants/theme";
+import { Image, ImageSourcePropType, StyleSheet } from "react-native";
 import LikeButton from "./like-button";
 
 const defaultImage = require("../../assets/images/favicon.png");
@@ -8,14 +9,18 @@ interface Props {
   imageUrl?: string;
   text: string;
   isLiked: boolean;
+  onLike: () => void;
 }
-const CatsILikeItem = ({ text, imageUrl, isLiked }: Props) => {
+const CatsILikeItem = ({ text, imageUrl, isLiked, onLike }: Props) => {
+  const source: ImageSourcePropType = imageUrl
+    ? { uri: imageUrl }
+    : defaultImage;
   return (
-    <View margin="m">
-      <Image source={defaultImage || imageUrl} style={styles.image} />
+    <View margin={"s"}>
+      <Image source={source} style={styles.image} />
       <View flexDirection="row" justifyContent="space-between" mt="s">
         <Text variant="regular">{text}</Text>
-        <LikeButton isLiked={isLiked} size={22} />
+        <LikeButton isLiked={isLiked} size={22} onLike={onLike} />
       </View>
     </View>
   );
@@ -25,8 +30,9 @@ const styles = StyleSheet.create({
     height: 150,
     width: 150,
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "white",
+    borderWidth: StyleSheet.hairlineWidth,
+    borderColor: palette.gray,
+    backgroundColor: palette.gray,
   },
 });
 

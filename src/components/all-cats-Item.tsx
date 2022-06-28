@@ -8,9 +8,10 @@ const defaultImage = require("../../assets/images/favicon.png");
 interface Props {
   imageUrl?: string;
   text: string;
+  onLike: () => void;
   isLiked: boolean;
 }
-const AllCatsItem = ({ text, imageUrl, isLiked }: Props) => {
+const AllCatsItem = ({ text, imageUrl, onLike, isLiked }: Props) => {
   const source: ImageSourcePropType = imageUrl
     ? { uri: imageUrl }
     : defaultImage;
@@ -28,7 +29,7 @@ const AllCatsItem = ({ text, imageUrl, isLiked }: Props) => {
           {text}
         </Text>
       </View>
-      <LikeButton isLiked={isLiked} size={22} />
+      <LikeButton isLiked={isLiked} size={22} onLike={onLike} />
     </View>
   );
 };

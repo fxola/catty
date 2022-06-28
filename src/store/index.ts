@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { allCatsApi } from "@src/features/all-cats/api";
-import allCatsReducer from "@src/features/all-cats/slice";
+import allCats from "@src/features/all-cats/slice";
+import likedCats from "@src/features/cats-i-like/slice";
 
 export const store = configureStore({
   reducer: {
     [allCatsApi.reducerPath]: allCatsApi.reducer,
-    allCats: allCatsReducer,
+    allCats,
+    likedCats,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(allCatsApi.middleware),
