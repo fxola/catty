@@ -1,4 +1,5 @@
 import { createTheme } from "@shopify/restyle";
+import { normalize } from "./layout";
 
 export const palette = {
   gray: "#ccc",
@@ -20,10 +21,10 @@ const theme = createTheme({
     active: palette.black,
   },
   spacing: {
-    s: 8,
-    m: 16,
-    l: 24,
-    xl: 40,
+    s: normalize(8),
+    m: normalize(16),
+    l: normalize(24),
+    xl: normalize(40),
   },
   breakpoints: {
     phone: 0,
@@ -36,17 +37,17 @@ const theme = createTheme({
     bold: {
       fontWeight: "600",
       fontFamily: "SFPro Display",
-      fontSize: 16,
-      lineHeight: 24,
+      fontSize: normalize(16),
+      lineHeight: normalize(24),
     },
     regular: {
       fontWeight: "400",
       fontFamily: "SFPro Display",
-      fontSize: 16,
-      lineHeight: 24,
+      fontSize: normalize(16),
+      lineHeight: normalize(24),
     },
     caption: {
-      fontSize: 13,
+      fontSize: normalize(13),
       fontWeight: "400",
       fontFamily: "SFPro Display",
     },

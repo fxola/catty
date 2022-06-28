@@ -20,6 +20,7 @@ import {
   getFavoriteIDs,
   removeFromFavorites,
 } from "../cats-i-like/slice";
+import { normalize } from "@src/constants/layout";
 
 const AllCats = () => {
   const [page, setPage] = useState(0);
@@ -85,9 +86,7 @@ const AllCats = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header title="All Cats" />
-      <View backgroundColor="primaryBackground" paddingHorizontal={"l"}>
-        {renderPageContent()}
-      </View>
+      <View backgroundColor="primaryBackground">{renderPageContent()}</View>
     </SafeAreaView>
   );
 };
@@ -95,11 +94,18 @@ const AllCats = () => {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    paddingBottom: Platform.select({ ios: 70, android: 100 }),
+    paddingBottom: Platform.select({
+      ios: normalize(70),
+      android: normalize(100),
+    }),
   },
   listContainer: {
     flexGrow: 1,
-    paddingBottom: Platform.select({ ios: 70, android: 100 }),
+    paddingBottom: Platform.select({
+      ios: normalize(70),
+      android: normalize(100),
+    }),
+    paddingHorizontal: normalize(24),
   },
 });
 
