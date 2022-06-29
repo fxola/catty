@@ -7,7 +7,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { StatusBar } from "expo-status-bar";
 import useCachedResources from "@src/hooks/useCachedResources";
 import { Provider } from "react-redux";
-import { store } from "@src/store";
+import store, { persistor } from "@src/store";
+import { PersistGate } from "redux-persist/integration/react";
 
 export default function App() {
   const colorScheme = useColorScheme();
@@ -34,9 +35,11 @@ export default function App() {
   return (
     <SafeAreaProvider>
       <Provider store={store}>
-        <ThemeProvider theme={isDark ? darkTheme : theme}>
-          <Navigation isDarkMode={isDark} />
-        </ThemeProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          <ThemeProvider theme={isDark ? darkTheme : theme}>
+            <Navigation isDarkMode={isDark} />
+          </ThemeProvider>
+        </PersistGate>
       </Provider>
       <StatusBar style={statusBarStyle} translucent />
     </SafeAreaProvider>
