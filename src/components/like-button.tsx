@@ -18,7 +18,7 @@ interface Props {
   onLike: () => void;
 }
 
-export const LikeButton = ({ isLiked, size = 25, onLike }: Props) => {
+const LikeButton = ({ isLiked, size = 25, onLike }: Props) => {
   const name = isLiked ? "heart" : "heart-outline";
   const color = isLiked ? palette.red : palette.gray;
 

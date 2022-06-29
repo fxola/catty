@@ -21,10 +21,11 @@ import {
   removeFromFavorites,
 } from "@src/features/cats-i-like/slice";
 import { normalize } from "@src/constants/layout";
+import ErrorMessage from "@src/components/error-message";
 
 const AllCats = () => {
   const [page, setPage] = useState(0);
-  const { isLoading, isFetching } = useGetAllCatsQuery(page);
+  const { isLoading, isFetching, refetch, isError } = useGetAllCatsQuery(page);
   const { data } = useAppSelector(getInfiniteCatList);
   const favoriteIDs = useAppSelector(getFavoriteIDs);
   const dispatch = useAppDispatch();
@@ -66,7 +67,20 @@ const AllCats = () => {
 
   const renderPageContent = () => {
     if (isLoading) {
-      return <ActivityIndicator size={"large"} />;
+      return (
+        <View
+          flexGrow={1}
+          alignItems="center"
+          justifyContent="center"
+          style={styles.spinnerContainer}
+        >
+          <ActivityIndicator size={"large"} />
+        </View>
+      );
+    }
+
+    if (isError) {
+      return <ErrorMessage onPress={refetch} />;
     }
 
     return (
@@ -79,6 +93,9 @@ const AllCats = () => {
         onEndReached={onEndreached}
         onEndReachedThreshold={0.7}
         ref={ref}
+        ListFooterComponent={
+          isFetching ? <ActivityIndicator size="small" /> : null
+        }
       />
     );
   };
@@ -107,6 +124,7 @@ const styles = StyleSheet.create({
     }),
     paddingHorizontal: normalize(24),
   },
+  spinnerContainer: { height: "90%" },
 });
 
 export default AllCats;

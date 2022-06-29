@@ -15,6 +15,7 @@ const theme = createTheme({
     primaryBackground: palette.white,
     primaryText: palette.black,
     primaryGrey: palette.gray,
+    plainWhite: palette.white,
   },
   tabTintColor: {
     inactive: palette.gray,
@@ -68,6 +69,7 @@ export const darkTheme: Theme = {
     ...theme.colors,
     primaryBackground: palette.pitchBlack,
     primaryText: palette.white,
+    plainWhite: palette.white,
   },
   navigationContainer: {
     primary: palette.white,

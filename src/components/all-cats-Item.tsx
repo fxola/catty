@@ -1,6 +1,7 @@
 import Text from "@src/components/base/text";
 import View from "@src/components/base/view";
 import { palette } from "@src/constants/theme";
+import { memo } from "react";
 import { Image, ImageSourcePropType, StyleSheet } from "react-native";
 import LikeButton from "./like-button";
 
@@ -44,4 +45,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AllCatsItem;
+export default memo(AllCatsItem);

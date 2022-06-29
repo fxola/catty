@@ -14,6 +14,7 @@ import { useCallback, useRef } from "react";
 import { Cat } from "../types";
 import { useResponsiveProp } from "@shopify/restyle";
 import { useScrollToTop } from "@react-navigation/native";
+import Text from "@src/components/base/text";
 
 const CatsILike = () => {
   const likedCats = useAppSelector(getFavoriteCats);
@@ -50,6 +51,12 @@ const CatsILike = () => {
 
   const responsiveColumns = useResponsiveProp({ phone: 2, tablet: 4 });
 
+  const EmptyList = (
+    <View alignItems="center" justifyContent="center" flexGrow={1}>
+      <Text>No Likes yet!</Text>
+    </View>
+  );
+
   return (
     <SafeAreaView style={styles.container}>
       <Header title="Cats I Like" />
@@ -62,6 +69,7 @@ const CatsILike = () => {
           columnWrapperStyle={styles.columnContainer}
           showsVerticalScrollIndicator={false}
           ref={ref}
+          ListEmptyComponent={EmptyList}
         />
       </View>
     </SafeAreaView>
