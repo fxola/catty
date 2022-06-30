@@ -18,9 +18,11 @@ const CatsILikeItem = ({ text, imageUrl, isLiked, onLike }: Props) => {
     : defaultImage;
   return (
     <View marginHorizontal={"s"} marginVertical={"m"}>
-      <Image source={source} style={styles.image} />
+      <Image source={source} style={styles.image} testID="image" />
       <View flexDirection="row" justifyContent="space-between" mt="s">
-        <Text variant="regular">{text}</Text>
+        <Text variant="regular" testID="text">
+          {text}
+        </Text>
         <LikeButton isLiked={isLiked} size={22} onLike={onLike} />
       </View>
     </View>

@@ -4,7 +4,7 @@ import { allCatsApi } from "@src/features/all-cats/api";
 import { Cat } from "../types";
 import uuid from "uuid-random";
 
-type FavoriteCat = Cat & { favorite_id: string };
+export type FavoriteCat = Cat & { favorite_id: string };
 
 interface LikedCatsState {
   sub_id?: string;

@@ -22,10 +22,12 @@ import {
 } from "@src/features/cats-i-like/slice";
 import { normalize } from "@src/constants/layout";
 import ErrorMessage from "@src/components/error-message";
+import Text from "@src/components/base/text";
 
 const AllCats = () => {
   const [page, setPage] = useState(0);
-  const { isLoading, isFetching, refetch, isError } = useGetAllCatsQuery(page);
+  const { isLoading, isFetching, refetch, isError, currentData } =
+    useGetAllCatsQuery(page);
   const { data } = useAppSelector(getInfiniteCatList);
   const favoriteIDs = useAppSelector(getFavoriteIDs);
   const dispatch = useAppDispatch();
@@ -74,7 +76,7 @@ const AllCats = () => {
           justifyContent="center"
           style={styles.spinnerContainer}
         >
-          <ActivityIndicator size={"large"} />
+          <ActivityIndicator size={"large"} testID="spinner" />
         </View>
       );
     }
@@ -82,6 +84,12 @@ const AllCats = () => {
     if (isError) {
       return <ErrorMessage onPress={refetch} />;
     }
+
+    const EmptyList = (
+      <View alignItems="center" justifyContent="center" flexGrow={1}>
+        <Text>No Cats!</Text>
+      </View>
+    );
 
     return (
       <FlatList
@@ -93,9 +101,8 @@ const AllCats = () => {
         onEndReached={onEndreached}
         onEndReachedThreshold={0.7}
         ref={ref}
-        ListFooterComponent={
-          isFetching ? <ActivityIndicator size="small" /> : null
-        }
+        ListEmptyComponent={EmptyList}
+        testID="all-cats-list"
       />
     );
   };

@@ -26,13 +26,13 @@ const PreferenceModal = ({ visible, toggleModal }: Props) => {
 
   return (
     <Modal visible={visible} transparent={true} animationType={"slide"}>
-      <Pressable style={styles.overlay} onPress={toggleModal}>
+      <Pressable style={styles.overlay} onPress={toggleModal} testID="overlay">
         <TouchableWithoutFeedback>
           <View style={styles.banner} backgroundColor="primaryBackground">
             <Text variant={"bold"} textAlign="center">
               Preferences
             </Text>
-            <View marginTop={"l"} style={styles.line} />
+            <View marginTop={"l"} style={styles.line} testID="line" />
             <View
               flexDirection="row"
               justifyContent="space-between"
@@ -41,7 +41,7 @@ const PreferenceModal = ({ visible, toggleModal }: Props) => {
               paddingVertical="m"
             >
               <Text variant={"bold"}>Dark Mode</Text>
-              <Switch value={isDark} onChange={onSwitch} />
+              <Switch value={isDark} onChange={onSwitch} testID="switch" />
             </View>
           </View>
         </TouchableWithoutFeedback>

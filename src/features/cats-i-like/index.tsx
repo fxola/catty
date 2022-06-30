@@ -19,7 +19,7 @@ import Text from "@src/components/base/text";
 const CatsILike = () => {
   const likedCats = useAppSelector(getFavoriteCats);
   const favoriteIDs = useAppSelector(getFavoriteIDs);
-  const favoriteCats = useAppSelector(getFavoriteCats);
+
   const ref = useRef<FlatList | null>(null);
   useScrollToTop(ref);
 
@@ -46,7 +46,7 @@ const CatsILike = () => {
         />
       );
     },
-    [favoriteCats, favoriteIDs]
+    [likedCats, favoriteIDs]
   );
 
   const responsiveColumns = useResponsiveProp({ phone: 2, tablet: 4 });

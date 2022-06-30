@@ -58,7 +58,12 @@ const LikeButton = ({ isLiked, size = 25, onLike }: Props) => {
   };
 
   return (
-    <AnimatedPressable onPress={onPress} style={style} hitSlop={hitSlop}>
+    <AnimatedPressable
+      onPress={onPress}
+      style={style}
+      hitSlop={hitSlop}
+      testID="like-button"
+    >
       <MaterialCommunityIcons name={name} color={color} size={size} />
     </AnimatedPressable>
   );

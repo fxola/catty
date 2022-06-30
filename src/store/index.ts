@@ -22,14 +22,14 @@ const persistConfig = {
   blacklist: ["api", "allCats"],
 };
 
-const reducer = combineReducers({
+export const reducer = combineReducers({
   [allCatsApi.reducerPath]: allCatsApi.reducer,
   allCats,
   likedCats,
   appTheme,
 });
 
-const persistedReducer = persistReducer(persistConfig, reducer);
+export const persistedReducer = persistReducer(persistConfig, reducer);
 
 const store = configureStore({
   reducer: persistedReducer,

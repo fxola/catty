@@ -24,9 +24,9 @@ const AllCatsItem = ({ text, imageUrl, onLike, isLiked }: Props) => {
       alignItems="center"
       mb={"l"}
     >
-      <View flexDirection="row" alignItems={"center"}>
-        <Image source={source} style={styles.image} />
-        <Text ml={"l"} variant="regular">
+      <View flexDirection="row" alignItems={"center"} testID="container">
+        <Image source={source} style={styles.image} testID="image" />
+        <Text ml={"l"} variant="regular" testID="text">
           {text}
         </Text>
       </View>
